@@ -1,5 +1,7 @@
 const express = require('express');
 const postsRouter = express.Router();
+const { getAllPosts } = require('../db');
+
 
 postsRouter.use((req, res, next) => {
   console.log("A request is being made to /posts");
@@ -7,13 +9,11 @@ postsRouter.use((req, res, next) => {
   next();
 });
 
-const { getAllPosts } = require('../db');
-
 postsRouter.get('/', async (req, res) => {
-    const users = await getAllPosts();
+    const posts = await getAllPosts();
 
     res.send({
-      "posts":[]
+      posts
   });
 });
 
