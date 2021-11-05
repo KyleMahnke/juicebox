@@ -1,4 +1,4 @@
-// inside index.js
+require('dotenv').config();
 const PORT = 3000;
 const express = require('express');
 const server = express();
@@ -19,11 +19,14 @@ server.use((req, res, next) => {
 server.use(express.json())
 
 const apiRouter = require('./api');
+// localhost:3000/api
 server.use('/api', apiRouter);
 
 const { client } = require('./db');
 client.connect();
 
+
+// localhost:3000
 server.listen(PORT, () => {
   console.log('The server is up on port', PORT)
 });
